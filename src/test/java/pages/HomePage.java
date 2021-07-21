@@ -15,54 +15,55 @@ import static utility.CommonUtils.waitForElementToBeClickable;
 import static utility.CommonUtils.waitForPageLoaded;
 
 public class HomePage {
-    Logger log  = Logger.getLogger(HomePage.class.getName());
+    Logger log = Logger.getLogger(HomePage.class.getName());
     public WebDriver driver;
 
-    @FindBy(how= How.ID, using="search_query_top")
+    @FindBy(how = How.ID, using = "search_query_top")
     private WebElement searchTextbox;
 
-    @FindBy(how= How.NAME, using="submit_search")
+    @FindBy(how = How.NAME, using = "submit_search")
     private WebElement searchButton;
 
-    @FindBy(how= How.CSS, using="span[title='Continue shopping']")
+    @FindBy(how = How.CSS, using = "span[title='Continue shopping']")
     private WebElement continueShoppingButton;
 
-    @FindBy(how= How.CSS, using="div#layer_cart h2")
+    @FindBy(how = How.CSS, using = "div#layer_cart h2")
     private WebElement successMessage;
 
-    @FindBy(how= How.CSS, using="div.shopping_cart span")
+    @FindBy(how = How.CSS, using = "div.shopping_cart span")
     private WebElement numberOfItemsInTheCart;
 
-    @FindBy(how= How.ID, using="layer_cart_product_price")
+    @FindBy(how = How.ID, using = "layer_cart_product_price")
     private WebElement productPrice;
 
-    String listOfProduct="//ul[@class='product_list grid row']//span[contains(text(),'Add to cart')]";
+    String listOfProduct = "//ul[@class='product_list grid row']//span[contains(text(),'Add to cart')]";
 
     public HomePage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
 
-    public void searchACategory(){
+    public void searchACategory() {
         waitForPageLoaded(driver);
         searchTextbox.sendKeys(SEARCH);
         searchButton.click();
     }
 
-    public String addTwoItemsToCart(){
-        String succesMessage=""; int price=0;
+    public String addTwoItemsToCart() {
+        String succesMessage = "";
+        int price = 0;
         List<WebElement> products = driver.findElements(By.xpath(listOfProduct));
         for (int product = 0; product < 2; product++) {
             products.get(product).click();
             waitForPageLoaded(driver);
-            waitForElementToBeClickable(continueShoppingButton,driver);
-            succesMessage=successMessage.getText();
+            waitForElementToBeClickable(continueShoppingButton, driver);
+            succesMessage = successMessage.getText();
             continueShoppingButton.click();
         }
         return succesMessage;
     }
 
-    public String getnumberOfItemsInTheCart(){
+    public String getnumberOfItemsInTheCart() {
         return numberOfItemsInTheCart.getText();
     }
 

@@ -11,9 +11,7 @@ public class DriverSetup {
     Logger logger = Logger.getLogger(DriverSetup.class.getName());
     public static WebDriver driver;
 
-    public  static WebDriver openBrowser() {
-       // logger.info("Starting Testcase " + this.getClass().getName());
-        //System.setProperty("webdriver.chrome.driver", "./src/drivers/chromedriver");
+    public static WebDriver openBrowser() {
         driver = DriverManager.getDriver(App.getProperty("browser.name"));
         driver.get(App.getProperty("app.url"));
         driver.manage().deleteAllCookies();
@@ -22,9 +20,7 @@ public class DriverSetup {
         return driver;
     }
 
-
-    public static void quitBrowser(){
-       // logger.info("Closing the browser");
+    public static void quitBrowser() {
         driver.quit();
     }
 

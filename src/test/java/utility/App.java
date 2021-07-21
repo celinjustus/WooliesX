@@ -39,7 +39,7 @@ public class App {
         }
     }
 
-    public static String getProperty(String key){
+    public static String getProperty(String key) {
         return getProperties().getProperty(key);
     }
 }

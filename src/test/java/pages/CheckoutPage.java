@@ -12,43 +12,39 @@ import java.util.logging.Logger;
 import static utility.CommonUtils.*;
 
 public class CheckoutPage {
-    Logger log  = Logger.getLogger(CheckoutPage.class.getName());
+    Logger log = Logger.getLogger(CheckoutPage.class.getName());
     public WebDriver driver;
 
-    @FindBy(how= How.ID, using="button_order_cart")
+    @FindBy(how = How.ID, using = "button_order_cart")
     private WebElement checkoutButton;
 
-    @FindBy(how= How.CSS, using="div.shopping_cart a")
+    @FindBy(how = How.CSS, using = "div.shopping_cart a")
     private WebElement cartMenu;
 
-    @FindBy(how= How.CSS, using="a[class*='button btn']")
+    @FindBy(how = How.CSS, using = "a[class*='button btn']")
     private WebElement proceedToCheckoutButton;
 
-    @FindBy(how= How.XPATH, using="//button[@name='processAddress']//span[contains(text(),'Proceed to checkout')]")
+    @FindBy(how = How.XPATH, using = "//button[@name='processAddress']//span[contains(text(),'Proceed to checkout')]")
     private WebElement proceedToCheckoutButtonInAddressPage;
 
-    @FindBy(how= How.XPATH, using="//div[@id='uniform-cgv']")
+    @FindBy(how = How.XPATH, using = "//div[@id='uniform-cgv']")
     private WebElement termsOfServicesCheckBox;
 
-    @FindBy(how= How.XPATH, using="//button[@name='processCarrier']//span[contains(text(),'Proceed to checkout')]")
+    @FindBy(how = How.XPATH, using = "//button[@name='processCarrier']//span[contains(text(),'Proceed to checkout')]")
     private WebElement proceedToCheckoutButtonInShippingPage;
 
-    @FindBy(how= How.CSS, using="a.bankwire")
+    @FindBy(how = How.CSS, using = "a.bankwire")
     private WebElement payByBankWire;
 
-    @FindBy(how= How.XPATH, using="//span[contains(text(),'I confirm my order')]")
+    @FindBy(how = How.XPATH, using = "//span[contains(text(),'I confirm my order')]")
     private WebElement iConfirmMyOrderButton;
-
-   /* @FindBy(how= How.CSS, using="p.cheque-indent>strong")
-    private WebElement orderConfirmation;*/
-
 
     public CheckoutPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
 
-    public void checkout(){
+    public void checkout() {
         scrollPageUp(driver);
         Actions actions = new Actions(driver);
         actions.moveToElement(cartMenu).perform();
@@ -58,39 +54,30 @@ public class CheckoutPage {
     }
 
 
-   public void clickProceedToCheckoutButton(){
-       //scrollIntoViewAndClick(driver,proceedToCheckoutButton);
-      // waitForElementToBeClickable(proceedToCheckoutButton,driver);
-         proceedToCheckoutButton.click();
-         waitForPageLoaded(driver);
+    public void clickProceedToCheckoutButton() {
+        proceedToCheckoutButton.click();
+        waitForPageLoaded(driver);
     }
-    public void clickProceedToCheckoutButtonInAddressPage(){
-       // scrollIntoViewAndClick(driver,proceedToCheckoutButtonInAddressPage);
-        //waitForElementToBeClickable(proceedToCheckoutButtonInAddressPage,driver);
+
+    public void clickProceedToCheckoutButtonInAddressPage() {
         proceedToCheckoutButtonInAddressPage.click();
         waitForPageLoaded(driver);
     }
-    public void clickProceedToCheckoutButtonInShippingPage(){
-       //scrollIntoViewAndClick(driver,termsOfServicesCheckBox);
+
+    public void clickProceedToCheckoutButtonInShippingPage() {
         termsOfServicesCheckBox.click();
-        //scrollIntoViewAndClick(driver,proceedToCheckoutButtonInShippingPage);
         proceedToCheckoutButtonInShippingPage.click();
         waitForPageLoaded(driver);
     }
-    public void clickPayByBankWire(){
-        //scrollIntoViewAndClick(driver,payByBankWire);
+
+    public void clickPayByBankWire() {
         payByBankWire.click();
         waitForPageLoaded(driver);
     }
-    public void clickIConfirmMyOrderButton(){
-        //scrollIntoViewAndClick(driver,iConfirmMyOrderButton);
+
+    public void clickIConfirmMyOrderButton() {
         iConfirmMyOrderButton.click();
         waitForPageLoaded(driver);
     }
-    public void isOrderConfirmationPageDisplayed(){
-        //waitForPageLoaded(driver);
-        //return verifyTextPresentInPage(driver,orderConfirmationPage);
-    }
-
 
 }

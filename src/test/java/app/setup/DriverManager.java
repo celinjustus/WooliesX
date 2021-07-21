@@ -13,7 +13,7 @@ public class DriverManager {
             System.setProperty("webdriver.chrome.driver", App.getProperty("chrome.driver.location"));
             driver = new ChromeDriver();
         } else if (browser.equalsIgnoreCase("edge")) {
-           System.setProperty("webdriver.edge.driver", App.getProperty("edge.driver.location"));
+            System.setProperty("webdriver.edge.driver", App.getProperty("edge.driver.location"));
             driver = new EdgeDriver();
         } else {
             System.setProperty("webdriver.ie.driver", App.getProperty("ie.driver.location"));
